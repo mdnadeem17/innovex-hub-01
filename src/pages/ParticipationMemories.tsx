@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Plus, Image as ImageIcon, Calendar, Trash2 } from "lucide-react";
 import ImageWithFallback from "@/components/ImageWithFallback";
-import AddparticipationMemoryModal from "@/components/AddparticipationMemoryModal";
+import AddParticipationMemoryModal from "@/components/AddParticipationMemoryModal";
 import { useMutation } from "convex/react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
@@ -173,7 +173,7 @@ const participationMemories = () => {
 
             {/* Add Memory Modal */}
             {participationId && (
-                <AddparticipationMemoryModal
+                <AddParticipationMemoryModal
                     isOpen={isAddModalOpen}
                     onClose={() => setIsAddModalOpen(false)}
                     participationId={participationId}
