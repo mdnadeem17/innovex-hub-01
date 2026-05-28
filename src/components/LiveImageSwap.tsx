@@ -49,8 +49,30 @@ const LiveImageSwap = ({ mainImage, itemId, type, alt, className = '' }: Props) 
     return () => clearTimeout(timeout);
   }, [allImages.length]);
 
+  const renderImage = (src: string) => (
+    <div className="relative w-full h-full bg-black/90 overflow-hidden">
+      {/* Blurred background "AI Fill" */}
+      <img 
+        src={src} 
+        alt="background" 
+        className="absolute inset-0 w-full h-full object-cover opacity-50 blur-xl scale-110 transition-transform duration-700" 
+        loading="lazy" 
+      />
+      {/* Actual fully visible image */}
+      <ImageWithFallback
+        src={src}
+        alt={alt}
+        className="absolute inset-0 w-full h-full object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-105"
+      />
+    </div>
+  );
+
   if (allImages.length === 0) {
-    return <ImageWithFallback src={mainImage} alt={alt} className={`object-cover object-top ${className}`} />;
+    return (
+      <div className={`relative overflow-hidden ${className}`}>
+         {renderImage(mainImage)}
+      </div>
+    );
   }
 
   return (
@@ -62,13 +84,9 @@ const LiveImageSwap = ({ mainImage, itemId, type, alt, className = '' }: Props) 
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.5 }}
-          className="absolute inset-0"
+          className="absolute inset-0 w-full h-full"
         >
-          <ImageWithFallback
-            src={allImages[currentIndex]}
-            alt={alt}
-            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
-          />
+          {renderImage(allImages[currentIndex])}
         </motion.div>
       </AnimatePresence>
     </div>

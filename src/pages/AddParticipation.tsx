@@ -6,7 +6,7 @@ import { useToast } from '@/hooks/use-toast';
 import { uploadImage } from '@/lib/uploadImage';
 import { useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
-import ParticipationForm, { participationFormData } from '@/components/ParticipationForm';
+import ParticipationForm, { ParticipationFormData } from '@/components/ParticipationForm';
 
 const AddParticipation = () => {
   const { user } = useAuth();
@@ -15,21 +15,20 @@ const AddParticipation = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const createParticipation = useMutation(api.participations.create);
-  const createMemory = useMutation(api.participation_memories.create);
   const generateUploadUrl = useMutation(api.files.generateUploadUrl);
 
-  const handleSubmit = async (data: participationFormData, imageFiles: File[]) => {
-    if (imageFiles.length === 0) {
-      toast({ title: 'Error', description: 'At least one image is required for new participations.', variant: 'destructive' });
+  const handleSubmit = async (data: ParticipationFormData, imageFile: File | null) => {
+    if (!imageFile) {
+      toast({ title: 'Error', description: 'Image is required for new participations.', variant: 'destructive' });
       return;
     }
 
     setSubmitting(true);
     try {
       const postUrl = await generateUploadUrl();
-      const storageId = await uploadImage(imageFiles[0], postUrl);
+      const storageId = await uploadImage(imageFile, postUrl);
 
-      const participationId = await createParticipation({
+      await createParticipation({
         title: data.title.trim(),
         description: data.description.trim(),
         event_name: data.event_name.trim(),
@@ -40,30 +39,9 @@ const AddParticipation = () => {
         created_by: user?.id,
       });
 
-      const remainingFiles = imageFiles.slice(1);
-      if (remainingFiles.length > 0) {
-        await Promise.all(
-          remainingFiles.map(async (file) => {
-            const memoryPostUrl = await generateUploadUrl();
-            const memoryStorageId = await uploadImage(file, memoryPostUrl);
-            await createMemory({
-              participation_id: participationId,
-              title: data.title.trim(),
-              description: 'Additional participation photo',
-              image_url: memoryStorageId,
-              category: 'Participation',
-              date: data.date.trim(),
-              type: 'image',
-            });
-          })
-        );
-      }
-
       toast({
         title: 'Participation Submitted',
-        description: remainingFiles.length > 0 
-          ? `Your participation and ${remainingFiles.length} additional memories have been submitted.` 
-          : 'Your participation has been submitted for approval.',
+        description: 'Your participation has been submitted for approval.',
       });
       navigate('/');
     } catch (err: unknown) {
