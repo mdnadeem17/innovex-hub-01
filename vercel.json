@@ -5,5 +5,8 @@
   "framework": "vite",
   "env": {
     "VITE_CONVEX_URL": "https://astute-owl-390.convex.cloud"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
