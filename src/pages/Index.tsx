@@ -10,14 +10,15 @@ import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { Doc } from "../../convex/_generated/dataModel";
 import heroBg from '@/assets/hero-bg.jpg';
-import { Rocket, Eye, Cpu, Heart, ArrowRight, Zap, Database, Code } from 'lucide-react';
+import { Rocket, Eye, Cpu, Heart, ArrowRight, Zap, Database, Code, Trophy, Users, Lightbulb } from 'lucide-react';
 import ImageWithFallback from '@/components/ImageWithFallback';
 import ParticipationCard from '@/components/ParticipationCard';
 import BackgroundEngine from '@/components/BackgroundEngine';
+import AnimatedStatCard from '@/components/AnimatedStatCard';
 
 const ABOUT_SECTIONS = [
   {
-    icon: Rocket,
+    icon: Lightbulb,
     title: 'Ideas → Prototypes → Startups',
     text: 'We don’t just write code for grades. We build products, iterate rapidly, and scale solutions that have real-world impact.',
   },
@@ -27,12 +28,12 @@ const ABOUT_SECTIONS = [
     text: 'From neural networks to custom PCBs. We tackle complex innovation challenges that push the boundaries of what student builders can achieve.',
   },
   {
-    icon: Eye,
+    icon: Rocket,
     title: 'Visionary Execution',
     text: 'Ideas are cheap. Execution is everything. We prioritize rapid prototyping, constant iteration, and shipping functional systems.',
   },
   {
-    icon: Heart,
+    icon: Users,
     title: 'Builder Ecosystem',
     text: 'Surround yourself with obsessive builders, designers, and founders. This is where the next generation of tech leaders collaborate.',
   },
@@ -123,34 +124,38 @@ const Index = () => {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col items-start text-left max-w-2xl"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-display font-bold tracking-widest uppercase mb-8 shadow-[0_0_15px_rgba(255,200,87,0.15)]">
-              <Zap size={14} className="animate-pulse" />
-              <span>Innovation Lab</span>
+            <div className="relative inline-flex items-center justify-center mb-8 group">
+              <div className="absolute inset-0 bg-primary/10 blur-[15px] rounded-full transition-all duration-500" />
+              <div className="relative inline-flex items-center justify-center px-5 py-1 rounded-full bg-primary/10 border border-primary/20 shadow-[0_0_15px_rgba(255,200,87,0.15)] backdrop-blur-sm">
+                <span className="font-display font-semibold text-xs tracking-[2px] uppercase bg-gradient-to-r from-primary to-[#FFEAA7] bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(255,200,87,0.4)]">
+                  INNOVEX HUB
+                </span>
+              </div>
             </div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-[5rem] font-display font-bold text-white mb-6 leading-[1.1] tracking-tight uppercase">
+            <h1 className="text-4xl md:text-5xl lg:text-[5rem] leading-[1.1] font-display font-bold text-white mb-6 tracking-tight uppercase">
               BUILDING <br />
               <span className="text-white/50">STUDENTS</span> <br />
               INTO <span className="text-primary drop-shadow-[0_0_30px_rgba(255,200,87,0.4)]">INNOVATORS</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-foreground/70 mb-10 max-w-xl leading-relaxed font-light">
-              Where future founders are built. We don't just write code—we turn bold ideas into real-world startups, prototypes, and deep tech solutions.
+            <p className="text-[18px] md:text-[22px] text-white/90 mb-10 w-[90%] max-w-xl leading-[1.8] font-cursive text-left tracking-[0.5px]">
+              Where <span className="text-[#FFEAA7] font-medium drop-shadow-[0_0_12px_rgba(255,200,87,0.6)]">future founders</span> are built. We don't just write code—we turn <span className="text-[#FFEAA7] font-medium drop-shadow-[0_0_12px_rgba(255,200,87,0.6)]">bold ideas</span> into real-world <span className="text-[#FFEAA7] font-medium drop-shadow-[0_0_12px_rgba(255,200,87,0.6)]">startups</span>, prototypes, and <span className="text-[#FFEAA7] font-medium drop-shadow-[0_0_12px_rgba(255,200,87,0.6)]">deep tech</span> solutions.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
               <button
                 onClick={() => setMemberModal(true)}
-                className="group relative px-8 py-4 bg-primary text-[#050B14] font-display font-bold text-sm tracking-widest uppercase rounded-lg overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,200,87,0.4)] flex items-center gap-2"
+                className="group relative px-8 py-4 bg-primary text-[#050B14] font-display font-bold text-sm tracking-widest uppercase rounded-lg overflow-hidden transition-all hover:scale-105 active:scale-95 hover:shadow-[0_0_40px_rgba(255,200,87,0.6)] flex items-center gap-2"
               >
-                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
                 <span className="relative z-10">Join The Team</span>
                 <ArrowRight size={16} className="relative z-10 transition-transform group-hover:translate-x-1" />
               </button>
 
               <button
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                className="group px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-white/30 font-display font-bold text-sm tracking-widest uppercase rounded-lg transition-all hover:scale-105 flex items-center gap-2"
+                className="group px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-white/30 font-display font-bold text-sm tracking-widest uppercase rounded-lg transition-all hover:scale-105 active:scale-95 flex items-center gap-2 shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
               >
                 <span>Explore Builds</span>
               </button>
@@ -159,12 +164,12 @@ const Index = () => {
             {/* Minimal Stats */}
             <div className="flex items-center gap-8 mt-16 pt-8 border-t border-white/10 w-full max-w-md">
               <div>
-                <div className="text-3xl font-display font-bold text-white mb-1">50+</div>
+                <div className="text-3xl font-display font-bold text-white mb-1">26+</div>
                 <div className="text-xs text-muted-foreground uppercase tracking-widest">Active Builders</div>
               </div>
               <div className="w-px h-10 bg-white/10" />
               <div>
-                <div className="text-3xl font-display font-bold text-white mb-1">24</div>
+                <div className="text-3xl font-display font-bold text-white mb-1">3+</div>
                 <div className="text-xs text-muted-foreground uppercase tracking-widest">Live Projects</div>
               </div>
             </div>
@@ -230,7 +235,7 @@ const Index = () => {
       <div className="section-divider" />
 
       {/* About Section */}
-      <section id="about" className="py-12 md:py-24 px-4">
+      <section id="about" className="py-12 md:py-20 px-4">
         <div className="container mx-auto max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -272,12 +277,12 @@ const Index = () => {
                     <div className="bg-[#050B14]/80 backdrop-blur-xl rounded-2xl p-8 border border-white/5 shadow-2xl hover:-translate-y-2 hover:border-primary/30 hover:shadow-[0_0_30px_rgba(255,200,87,0.15)] transition-all duration-500 relative overflow-hidden group">
                       <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors" />
                       <div className="flex items-center gap-4 mb-4 relative z-10">
-                        <div className="p-3 rounded-xl bg-primary/10 border border-primary/20 shadow-[0_0_15px_rgba(255,200,87,0.1)]">
-                          <Icon size={24} className="text-primary" />
+                        <div className="timeline-icon shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 shadow-[0_0_15px_rgba(255,200,87,0.1)] overflow-visible">
+                          <Icon size={24} className="text-[#F5E6A3]" style={{ width: '24px', height: '24px', minWidth: '24px', minHeight: '24px', opacity: 1 }} />
                         </div>
                         <h3 className="font-display font-bold text-lg tracking-wider text-white group-hover:text-primary transition-colors">{section.title}</h3>
                       </div>
-                      <p className="text-foreground/60 leading-relaxed text-sm font-light relative z-10">{section.text}</p>
+                      <p className="text-foreground/90 leading-relaxed text-sm font-light relative z-10">{section.text}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -290,7 +295,7 @@ const Index = () => {
       <div className="section-divider" />
 
       {/* Projects Section */}
-      <section id="projects" className="py-12 md:py-24 px-4">
+      <section id="projects" className="py-12 md:py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -332,7 +337,7 @@ const Index = () => {
       <div className="section-divider" />
 
       {/* Achievements Section */}
-      <section id="achievements" className="py-12 md:py-24 px-4">
+      <section id="achievements" className="py-12 md:py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -386,7 +391,7 @@ const Index = () => {
       <div className="section-divider" />
 
       {/* Participations Section - Redesigned as The Building Years */}
-      <section id="participations" className="relative py-20 md:py-32 px-4 bg-[#02050A] overflow-hidden">
+      <section id="participations" className="relative py-12 md:py-20 px-4 bg-[#02050A] overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30" />
@@ -400,36 +405,45 @@ const Index = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center flex flex-col items-center"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white tracking-tight uppercase" style={{ marginBottom: '40px' }}>
               THE <span className="text-primary drop-shadow-[0_0_20px_rgba(255,200,87,0.5)]">BUILDING</span> YEARS
             </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto text-lg font-light tracking-wide uppercase text-sm border-b border-primary/20 pb-6 inline-block">
+            <p className="text-muted-foreground max-w-xl mx-auto text-lg font-light tracking-wide uppercase text-sm" style={{ marginBottom: '32px' }}>
               Every competition shaped the company we’re becoming.
             </p>
+            <div className="w-32 md:w-64 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" style={{ marginBottom: '40px' }} />
           </motion.div>
 
-          {/* Stats Row */}
+          {/* Stats Grid */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 mb-24 max-w-5xl mx-auto"
+            className="grid grid-cols-2 max-w-2xl mx-auto w-full"
+            style={{ gap: '20px', marginBottom: '60px' }}
           >
             {[
               { label: 'Competitions', value: '5+' },
               { label: 'Finales', value: '3' },
-              { label: 'Startup Pitches', value: '2' },
+              { label: 'Startup Pitches', value: '3' },
               { label: 'Robotics Top', value: '1' },
-              { label: 'Hours Built', value: '100+' }
+              { label: 'Hours Built', value: '100+', span: true }
             ].map((stat, i) => (
-              <div key={i} className="text-center p-4 rounded-xl bg-white/[0.02] border border-white/5 backdrop-blur-sm hover:border-primary/30 transition-all hover:bg-primary/[0.02] hover:-translate-y-1">
-                <div className="font-display font-bold text-2xl md:text-3xl text-primary drop-shadow-[0_0_10px_rgba(255,200,87,0.4)] mb-1">{stat.value}</div>
+              <div key={i} className={`text-center py-6 px-4 rounded-xl bg-[#050B14]/40 border border-white/5 backdrop-blur-md hover:border-primary/40 transition-all hover:bg-[#050B14]/60 hover:-translate-y-1 shadow-lg cursor-default group ${stat.span ? 'col-span-2' : ''}`}>
+                <div className="font-display font-bold text-3xl md:text-4xl text-white group-hover:text-primary transition-colors drop-shadow-[0_0_15px_rgba(255,255,255,0.05)] group-hover:drop-shadow-[0_0_20px_rgba(255,200,87,0.5)] mb-2">{stat.value}</div>
                 <div className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-widest">{stat.label}</div>
               </div>
             ))}
           </motion.div>
+
+          {/* Transition Zone Timeline Start */}
+          <div className="flex flex-col items-center w-full relative z-20" style={{ marginBottom: '40px' }}>
+            <div className="w-6 h-6 rounded-full bg-[#050B14] border-2 border-primary shadow-[0_0_20px_rgba(255,200,87,0.8)] flex items-center justify-center relative">
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            </div>
+          </div>
 
           <div className="relative">
             {participations === undefined ? (
@@ -439,15 +453,15 @@ const Index = () => {
             ) : (
               <>
                 {/* Vertical glowing line */}
-                <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-10 bottom-10 w-0.5 bg-gradient-to-b from-transparent via-primary/30 to-transparent shadow-[0_0_15px_rgba(255,200,87,0.3)] hidden md:block" />
+                <div className="absolute left-1/2 -translate-x-px top-[-80px] bottom-10 w-0.5 bg-gradient-to-b from-primary/30 via-primary/20 to-transparent shadow-[0_0_15px_rgba(255,200,87,0.2)] block" />
                 
                 {participations.map((participation: any, i: number) => {
                   const isEven = i % 2 === 0;
                   return (
-                    <div key={participation._id} className={`relative flex items-center mb-24 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} flex-col gap-8 md:gap-16`}>
+                    <div key={participation._id} className={`relative flex items-center mb-28 md:mb-24 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} flex-col gap-8 md:gap-16`}>
                       
                       {/* Timeline Dot */}
-                      <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-[#050B14] border-2 border-primary shadow-[0_0_15px_rgba(255,200,87,0.8)] z-20 hidden md:block" />
+                      <div className="absolute left-1/2 -translate-x-1/2 -top-14 md:top-auto w-4 h-4 rounded-full bg-[#050B14] border-2 border-primary shadow-[0_0_15px_rgba(255,200,87,0.8)] z-20 block" />
                       
                       {/* Empty side for year watermark */}
                       <div className={`hidden md:flex w-1/2 ${isEven ? 'justify-end pr-16 text-right' : 'justify-start pl-16 text-left'} items-center`}>
@@ -486,88 +500,122 @@ const Index = () => {
 
       <div className="section-divider" />
 
-      {/* Future Goals Section */}
-      <section id="goals" className="py-12 md:py-24 px-4">
-        <div className="container mx-auto max-w-5xl">
+      {/* Future Goals Section (Roadmap) */}
+      <section id="goals" className="relative py-16 md:py-24 px-4 bg-[#050B14] overflow-hidden">
+        {/* Glow lines background */}
+        <div className="absolute inset-0 z-0 opacity-20">
+          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+        </div>
+        
+        <div className="container mx-auto max-w-4xl relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4 tracking-tight uppercase">
-              FUTURE <span className="text-primary drop-shadow-[0_0_20px_rgba(255,200,87,0.5)]">GOALS</span>
+              THE <span className="text-primary drop-shadow-[0_0_20px_rgba(255,200,87,0.5)]">ROADMAP</span>
             </h2>
-            <div className="relative inline-block max-w-2xl mx-auto mt-8 px-10 py-5 bg-black/40 border border-white/10 rounded-2xl backdrop-blur-md shadow-2xl">
-              <p className="text-lg md:text-xl text-foreground/80 font-light tracking-wide italic flex items-start justify-center gap-1">
-                <span className="text-primary/60 font-serif text-2xl leading-none">"</span>
-                Vision without execution is just hallucination.
-                <span className="text-primary/60 font-serif text-2xl leading-none">"</span>
+            <div className="relative inline-block max-w-2xl mx-auto mt-4 px-8 py-3 bg-white/5 border border-white/10 rounded-full backdrop-blur-md">
+              <p className="text-sm md:text-base text-primary/80 font-display tracking-widest uppercase flex items-center justify-center gap-2">
+                <Zap size={16} />
+                Vision without execution is just hallucination
               </p>
             </div>
           </motion.div>
 
-          <div className="relative pt-10">
-            <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-primary/40 to-transparent shadow-[0_0_20px_rgba(255,200,87,0.3)] hidden md:block" />
+          <div className="relative">
+            {/* Connecting Glow Line */}
+            <div className="absolute left-8 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-primary/40 to-transparent shadow-[0_0_20px_rgba(255,200,87,0.5)]" />
 
-            {goals === undefined ? (
-              <div className="text-center text-muted-foreground">Loading roadmap...</div>
-            ) : goals.length === 0 ? (
-              null
-            ) : (
-              goals.map((goal, i) => {
-                const isEven = i % 2 === 0;
-                return (
-                  <motion.div
-                    key={goal._id}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-50px' }}
-                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                    className={`relative flex items-center mb-24 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} flex-col gap-8 md:gap-16`}
-                  >
-                    {/* Glowing Node */}
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#050B14] border-2 border-primary shadow-[0_0_20px_rgba(255,200,87,1)] z-20 hidden md:flex items-center justify-center">
-                      <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                    </div>
+            {[
+              { year: '2026', title: 'Launch Startup', desc: 'Transition from student projects to a registered entity. Secure initial funding and early adopters.' },
+              { year: '2027', title: 'Build Innovation Lab', desc: 'Establish a physical hardware & deep-tech lab equipped with 3D printers, PCB milling, and AI workstations.' },
+              { year: '2028', title: 'National Expansion', desc: 'Scale the builder ecosystem to top universities across India. Host the largest student-run deep-tech summit.' },
+              { year: '2029', title: 'Research & Development Center', desc: 'Partner with industry giants to run dedicated R&D solving real-world corporate challenges.' },
+              { year: '2030', title: 'Deep-Tech Products', desc: 'Launch proprietary hardware and AI products globally. Shift from a hub to a deep-tech conglomerate.' }
+            ].map((milestone, i) => {
+              const isEven = i % 2 === 0;
+              return (
+                <motion.div
+                  key={milestone.year}
+                  initial={{ opacity: 0, x: isEven ? -50 : 50, y: 30 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className={`relative flex items-center mb-16 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} flex-col gap-6 md:gap-12 group`}
+                >
+                  {/* Glowing Node */}
+                  <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-[#050B14] border-2 border-primary shadow-[0_0_20px_rgba(255,200,87,1)] z-20 flex items-center justify-center mt-2 md:mt-0 transition-transform duration-500 group-hover:scale-125">
+                    <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  </div>
 
-                    {/* Phase indicator (Empty Side) */}
-                    <div className={`hidden md:flex w-1/2 ${isEven ? 'justify-end pr-16 text-right' : 'justify-start pl-16 text-left'} items-center`}>
-                      <span className="font-display font-bold text-6xl text-white/5 select-none tracking-widest uppercase">
-                        PHASE 0{i + 1}
-                      </span>
-                    </div>
+                  {/* Year Indicator */}
+                  <div className={`w-full md:w-1/2 ${isEven ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'} pl-20 md:pl-0 pt-1 md:pt-0`}>
+                    <span className="font-display font-bold text-5xl md:text-6xl text-white/10 group-hover:text-primary/20 transition-colors duration-500 tracking-tighter">
+                      {milestone.year}
+                    </span>
+                  </div>
 
-                    {/* Content Card */}
-                    <div className="w-full md:w-1/2 relative z-10">
-                      <div className="bg-[#050B14]/80 backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-white/5 shadow-2xl hover:-translate-y-2 hover:border-primary/30 hover:shadow-[0_0_40px_rgba(255,200,87,0.15)] transition-all duration-500 overflow-hidden group">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/15 transition-colors" />
-                        
-                        <div className="flex items-center gap-3 mb-6">
-                          <div className="px-3 py-1 bg-primary/10 border border-primary/20 rounded text-primary text-[10px] font-display tracking-widest uppercase">
-                            Milestone {i + 1}
-                          </div>
-                          <div className="h-px flex-1 bg-gradient-to-r from-primary/30 to-transparent" />
-                        </div>
-
-                        {goal.image_url && (
-                          <div className="mb-6 overflow-hidden rounded-xl border border-white/5">
-                            <ImageWithFallback
-                              src={goal.image_url}
-                              alt={goal.text}
-                              loading="lazy"
-                              className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
-                            />
-                          </div>
-                        )}
-                        
-                        <p className="text-foreground/80 leading-relaxed font-light">{goal.text}</p>
+                  {/* Roadmap Card */}
+                  <div className="w-full md:w-1/2 relative z-10 pl-20 md:pl-0 pr-4 md:pr-0">
+                    <div className="glass-premium rounded-2xl p-6 border border-white/10 group-hover:border-primary/40 transition-all duration-500 group-hover:-translate-y-2 shadow-lg group-hover:shadow-[0_0_30px_rgba(255,200,87,0.2)] relative overflow-hidden">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[40px] group-hover:bg-primary/20 transition-colors duration-500" />
+                      <div className="relative z-10">
+                        <h3 className="font-display text-xl font-bold text-white group-hover:text-primary transition-colors mb-2 tracking-wide">{milestone.title}</h3>
+                        <p className="text-foreground/70 font-light text-sm leading-relaxed">{milestone.desc}</p>
                       </div>
                     </div>
-                  </motion.div>
-                );
-              })
-            )}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* Social Proof Section */}
+      <section className="py-[50px] bg-[#02050A] border-y border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-primary/5 blur-[120px] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] pointer-events-none" />
+        
+        <div className="container mx-auto px-4 relative z-10 max-w-3xl">
+          <div className="text-center" style={{ marginBottom: '30px' }}>
+            <h3 className="text-sm md:text-base font-display font-bold text-muted-foreground tracking-[0.1em] uppercase">
+              Trusted By Builders, <br className="md:hidden"/> Innovators & Competitions
+            </h3>
+          </div>
+          
+          <div className="flex flex-wrap justify-center items-center" style={{ gap: '16px' }}>
+            {[
+              'Presidency University', 
+              'GM University', 
+              'SIT Tumakuru', 
+              'TechNisium', 
+              'Invicia'
+            ].map((partner, i) => (
+              <motion.div
+                key={partner}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="px-4 py-3 md:px-6 md:py-4 rounded-xl bg-white/[0.02] border border-white/5 backdrop-blur-sm grayscale hover:grayscale-0 hover:border-primary/40 hover:bg-[#050B14]/40 transition-all duration-300 cursor-default group shadow-sm hover:shadow-[0_0_20px_rgba(255,200,87,0.1)]"
+              >
+                <span className="font-display font-bold text-xs md:text-sm text-white/50 group-hover:text-primary transition-colors duration-300 group-hover:drop-shadow-[0_0_10px_rgba(255,200,87,0.5)] whitespace-nowrap">
+                  {partner}
+                </span>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -575,34 +623,83 @@ const Index = () => {
       <div className="section-divider" />
 
       {/* Become Member Section */}
-      <section id="become-member" className="relative py-24 px-4 overflow-hidden">
+      <section id="become-member" className="relative py-10 md:py-16 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-primary/5 blur-[100px] pointer-events-none" />
+        
+        {/* Animated Particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+           {[...Array(12)].map((_, i) => (
+             <motion.div
+               key={i}
+               className="absolute w-2 h-2 bg-primary/30 rounded-full blur-[2px]"
+               style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
+               animate={{ y: [0, -40, 0], x: [0, Math.random() * 40 - 20, 0], opacity: [0.1, 0.6, 0.1] }}
+               transition={{ duration: 4 + Math.random() * 4, repeat: Infinity, ease: 'easeInOut' }}
+             />
+           ))}
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative bg-[#050B14]/90 backdrop-blur-2xl rounded-3xl p-12 md:p-20 border border-primary/20 text-center max-w-4xl mx-auto shadow-[0_0_50px_rgba(255,200,87,0.1)] overflow-hidden"
+          className="relative glass-premium rounded-3xl p-6 md:p-12 text-center max-w-4xl mx-auto shadow-[0_0_50px_rgba(255,200,87,0.15)] overflow-hidden group"
         >
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
+          {/* Rotating Glowing Border */}
+          <div className="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_340deg,rgba(255,200,87,0.6)_360deg)] animate-border-spin opacity-50" />
+          <div className="absolute inset-[2px] bg-[#050B14]/90 backdrop-blur-3xl rounded-[calc(1.5rem-2px)] z-0" />
           
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 uppercase tracking-tight">
+          <div className="relative z-10">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-transparent via-primary to-transparent animate-[pulse_3s_ease-in-out_infinite]" />
+          
+          <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-3 md:mb-6 uppercase tracking-tight">
             JOIN THE <span className="text-primary drop-shadow-[0_0_20px_rgba(255,200,87,0.5)]">COLLECTIVE</span>
           </h2>
-          <p className="text-lg text-foreground/60 leading-relaxed mb-10 max-w-2xl mx-auto font-light">
-            Become part of our innovation lab. Collaborate with fellow students across India,
-            access exclusive projects, and build the technology of tomorrow.
+          <p className="text-sm md:text-lg text-foreground/80 leading-relaxed mb-6 md:mb-8 max-w-xl mx-auto font-light">
+            Join India's next generation of builders. Collaborate, innovate, and launch real-world projects.
           </p>
+
+          <div className="flex justify-center items-center gap-2 md:gap-8 mb-8 text-white font-display uppercase tracking-widest text-[9px] md:text-sm bg-white/5 border border-white/10 rounded-2xl py-4 md:py-6 backdrop-blur-sm">
+            <div className="flex flex-col items-center flex-1">
+              <div className="flex items-center gap-1.5 mb-1">
+                <Zap size={14} className="text-primary hidden md:block" />
+                <span className="text-xl md:text-3xl text-primary font-bold drop-shadow-[0_0_10px_rgba(255,200,87,0.5)]">26+</span>
+              </div>
+              <span className="text-foreground/50">Builders</span>
+            </div>
+            
+            <div className="h-8 md:h-12 w-px bg-gradient-to-b from-transparent via-primary/30 to-transparent" />
+            
+            <div className="flex flex-col items-center flex-1">
+              <div className="flex items-center gap-1.5 mb-1">
+                <Rocket size={14} className="text-primary hidden md:block" />
+                <span className="text-xl md:text-3xl text-primary font-bold drop-shadow-[0_0_10px_rgba(255,200,87,0.5)]">3+</span>
+              </div>
+              <span className="text-foreground/50">Projects</span>
+            </div>
+
+            <div className="h-8 md:h-12 w-px bg-gradient-to-b from-transparent via-primary/30 to-transparent" />
+
+            <div className="flex flex-col items-center flex-1">
+              <div className="flex items-center gap-1.5 mb-1">
+                <Trophy size={14} className="text-primary hidden md:block" />
+                <span className="text-xl md:text-3xl text-primary font-bold drop-shadow-[0_0_10px_rgba(255,200,87,0.5)]">0</span>
+              </div>
+              <span className="text-foreground/50">Wins</span>
+            </div>
+          </div>
           
           <button
             onClick={() => { window.location.href = APPLY_MAILTO; }}
-            className="group relative px-10 py-5 bg-primary text-[#050B14] font-display font-bold text-sm tracking-widest uppercase rounded-lg overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,200,87,0.4)] inline-flex items-center gap-3"
+            className="group relative px-8 py-4 bg-primary text-[#050B14] font-display font-bold text-xs md:text-sm tracking-widest uppercase rounded-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,200,87,0.4)] hover:shadow-[0_0_50px_rgba(255,200,87,0.8)] inline-flex items-center gap-3 w-full md:w-auto justify-center"
           >
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
             <span className="relative z-10">Apply For Membership</span>
-            <Rocket size={16} className="relative z-10 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+            <Rocket size={14} className="relative z-10 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
           </button>
           
-          <p className="text-xs text-primary/50 mt-6 tracking-widest uppercase font-display">Applications reviewed within 48 hours</p>
+          <p className="text-[10px] md:text-xs text-primary/60 mt-4 tracking-widest uppercase font-display drop-shadow-md">Applications reviewed within 48 hours</p>
+          </div>
         </motion.div>
       </section>
 

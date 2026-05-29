@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 import LiveImageSwap from '@/components/LiveImageSwap';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -23,6 +24,7 @@ interface Props {
 const AchievementCard = ({ achievement, onViewMore, index }: Props) => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleViewJourney = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -40,15 +42,15 @@ const AchievementCard = ({ achievement, onViewMore, index }: Props) => {
       onClick={() => onViewMore(achievement)}
     >
       {/* Image */}
-      <div className="relative overflow-hidden h-48 shrink-0">
+      <div className="relative overflow-hidden h-64 md:h-48 shrink-0">
         <LiveImageSwap
           mainImage={achievement.image_url}
           itemId={achievement._id}
           type="achievement"
           alt={achievement.title}
-          className="w-full h-full"
+          className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
       </div>
 
       {/* Content */}
@@ -60,7 +62,20 @@ const AchievementCard = ({ achievement, onViewMore, index }: Props) => {
             </span>
         </div>
         <p className="text-xs text-accent font-display tracking-wider mb-2">{achievement.event_name}</p>
-        <p className="text-sm text-muted-foreground line-clamp-2 mb-4 flex-grow">{achievement.description}</p>
+        
+        <div className="flex-grow flex flex-col mb-4">
+          <p className={`text-sm text-muted-foreground transition-all duration-300 ${isExpanded ? '' : 'line-clamp-2'}`}>
+            {achievement.description}
+          </p>
+          {achievement.description && achievement.description.length > 80 && (
+            <button 
+              onClick={(e) => { e.stopPropagation(); setIsExpanded(!isExpanded); }}
+              className="text-primary/70 hover:text-primary text-[10px] uppercase font-display tracking-widest flex items-center gap-1 mt-2 self-start transition-colors"
+            >
+              {isExpanded ? <><ChevronUp size={12} /> Show Less</> : <><ChevronDown size={12} /> Read More</>}
+            </button>
+          )}
+        </div>
 
         <div className="flex items-center justify-between mt-auto">
           <div className="flex items-center gap-2 text-accent text-xs font-display tracking-wider group-hover:text-primary transition-colors">

@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 glass-strong">
-        <div className="container mx-auto flex items-center justify-between h-24 md:h-28 px-4">
+        <div className="container mx-auto flex items-center justify-between h-14 md:h-[70px] px-4">
           <button
             onClick={() => setMenuOpen(true)}
             className="p-2 text-primary hover:text-accent transition-colors"
@@ -29,7 +29,7 @@ const Header = () => {
             <img
               src={innovexLogo}
               alt="InnoveX Hub"
-              className="h-24 md:h-32 lg:h-40 w-auto animate-logo-pulse transition-all duration-300 drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]"
+              className="h-12 md:h-14 lg:h-16 w-auto animate-logo-pulse transition-all duration-300 drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]"
             />
           </div>
 

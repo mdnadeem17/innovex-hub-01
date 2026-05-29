@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
 import LiveImageSwap from '@/components/LiveImageSwap';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -45,6 +46,7 @@ const getTechTags = (title: string, desc: string) => {
 const participationCard = ({ participation, onViewMore, index }: Props) => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleViewJourney = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -65,14 +67,11 @@ const participationCard = ({ participation, onViewMore, index }: Props) => {
       onClick={() => onViewMore(participation)}
     >
       {/* Image with Cinematic Overlay */}
-      <div className="relative overflow-hidden h-56 shrink-0">
-        <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#050B14] via-[#050B14]/20 to-transparent mix-blend-multiply" />
-        <div className="absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-t from-[#050B14] to-transparent" />
-        <div className="absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-[#050B14]/80 to-transparent blur-sm" />
-        <div className="absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-[#050B14]/80 to-transparent blur-sm" />
+      <div className="relative overflow-hidden h-64 md:h-56 shrink-0">
+        <div className="absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-[#050B14] to-transparent" />
         
         {/* Warm tint overlay */}
-        <div className="absolute inset-0 z-10 bg-[#FFAA00]/5 mix-blend-overlay pointer-events-none" />
+        <div className="absolute inset-0 z-10 bg-[#FFAA00]/10 mix-blend-overlay pointer-events-none" />
 
         <div className="w-full h-full transform transition-transform duration-1000 group-hover:scale-110">
           <LiveImageSwap
@@ -111,9 +110,17 @@ const participationCard = ({ participation, onViewMore, index }: Props) => {
           {participation.event_name}
         </p>
         
-        <p className="text-sm text-foreground/80 font-light italic border-l-2 border-primary/30 pl-4 py-1 my-2 flex-grow flex items-center">
-          "{storyLine}"
-        </p>
+        <div className="flex-grow flex flex-col justify-center my-2">
+          <p className={`text-sm text-foreground/80 font-light italic border-l-2 border-primary/30 pl-4 py-1 transition-all duration-300 ${isExpanded ? '' : 'line-clamp-2'}`}>
+            "{storyLine}"
+          </p>
+          <button 
+            onClick={(e) => { e.stopPropagation(); setIsExpanded(!isExpanded); }}
+            className="text-primary/70 hover:text-primary text-[10px] uppercase font-display tracking-widest flex items-center gap-1 mt-2 self-start transition-colors"
+          >
+            {isExpanded ? <><ChevronUp size={12} /> Show Less</> : <><ChevronDown size={12} /> Read More</>}
+          </button>
+        </div>
 
         <div className="flex items-center justify-between mt-6 pt-4 border-t border-white/5">
           <div className="flex items-center gap-2 text-primary text-xs font-display font-bold tracking-widest uppercase transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(255,200,87,0.5)]">

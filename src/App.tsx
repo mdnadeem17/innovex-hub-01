@@ -49,7 +49,7 @@ const App = () => {
             <div className="flex flex-col min-h-[100dvh]">
               <EngineeringBackground />
               <Header />
-              <main className="relative z-10 flex-grow pt-24 md:pt-28"> {/* Added pt to account for fixed header */}
+              <main className="relative z-10 flex-grow pt-20 md:pt-24"> {/* Added pt to account for fixed header */}
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/projects" element={<Projects />} />

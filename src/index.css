@@ -59,10 +59,22 @@
     @apply border-border;
   }
 
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  section, div, img, svg, canvas {
+    max-width: 100%;
+  }
+
   body {
     @apply bg-background text-foreground font-body antialiased;
-    overflow-x: hidden;
-    /* Prevent horizontal scroll */
   }
 
   /* Prevent iOS zoom on inputs */
@@ -81,6 +93,11 @@
   h6 {
     font-family: 'Orbitron', sans-serif;
     @apply tracking-wider;
+  }
+
+  .font-cursive {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
   }
 
   /* Max Smoothness for interactive elements */
@@ -108,6 +125,14 @@
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     border: 1px solid hsla(45, 100%, 70%, 0.15);
+  }
+
+  .glass-premium {
+    background: hsla(225, 40%, 8%, 0.4);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid hsla(45, 100%, 70%, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   }
 
   .glow-text {
@@ -220,6 +245,18 @@
     }
   }
 
+  @keyframes shimmer {
+    100% {
+      transform: translateX(200%);
+    }
+  }
+
+  @keyframes border-spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
@@ -234,6 +271,10 @@
 
   .animate-drip {
     animation: drip 8s linear infinite;
+  }
+
+  .animate-border-spin {
+    animation: border-spin 4s linear infinite;
   }
 }
 
@@ -261,5 +302,15 @@
   .footer-developers,
   .linkedin-row {
     flex-direction: row !important;
+  }
+  
+  /* Timeline Icon Fix for mobile */
+  .timeline-icon svg {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: 24px !important;
+    height: 24px !important;
+    color: #F5E6A3 !important;
   }
 }
