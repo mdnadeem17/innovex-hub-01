@@ -453,15 +453,15 @@ const Index = () => {
             ) : (
               <>
                 {/* Vertical glowing line */}
-                <div className="absolute left-1/2 -translate-x-px top-[-80px] bottom-10 w-0.5 bg-gradient-to-b from-primary/30 via-primary/20 to-transparent shadow-[0_0_15px_rgba(255,200,87,0.2)] block" />
+                <div className="absolute left-1/2 -translate-x-1/2 top-[-80px] bottom-10 w-[2px] bg-gradient-to-b from-primary/30 via-primary/20 to-transparent shadow-[0_0_15px_rgba(255,200,87,0.2)] block" />
                 
                 {participations.map((participation: any, i: number) => {
                   const isEven = i % 2 === 0;
                   return (
                     <div key={participation._id} className={`relative flex items-center mb-28 md:mb-24 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} flex-col gap-8 md:gap-16`}>
                       
-                      {/* Timeline Dot */}
-                      <div className="absolute left-1/2 -translate-x-1/2 -top-14 md:top-auto w-4 h-4 rounded-full bg-[#050B14] border-2 border-primary shadow-[0_0_15px_rgba(255,200,87,0.8)] z-20 block" />
+                      {/* Timeline Dot (Hidden on mobile as it floats disconnected above centered cards) */}
+                      <div className="absolute left-1/2 -translate-x-1/2 md:top-auto w-4 h-4 rounded-full bg-[#050B14] border-2 border-primary shadow-[0_0_15px_rgba(255,200,87,0.8)] z-20 hidden md:block" />
                       
                       {/* Empty side for year watermark */}
                       <div className={`hidden md:flex w-1/2 ${isEven ? 'justify-end pr-16 text-right' : 'justify-start pl-16 text-left'} items-center`}>
